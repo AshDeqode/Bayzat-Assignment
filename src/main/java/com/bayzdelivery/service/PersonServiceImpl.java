@@ -32,6 +32,19 @@ public class PersonServiceImpl implements PersonService{
     return dbPerson.orElse(null);
   }
 
-
-
+  /**
+   * checking User can not be both customer and 
+   * delivery man at the same time and Only one must be chosen at registration
+   */ 
+  @Override
+  public boolean checkValidRegistration(Person p) {
+	  
+	if(((p.getIsCustomer()).toLowerCase()).equals("yes") && (p.getIsDeliveryMan().toLowerCase()).equals("yes")) {
+		return false;
+	}
+	
+	else {
+		return true;
+	}
+  }
 }

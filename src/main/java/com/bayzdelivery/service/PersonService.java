@@ -9,5 +9,7 @@ public interface PersonService {
   public Person save(Person p);
 
   public Person findById(Long personId);
+  
+  public boolean checkValidRegistration(Person p);
 
 }

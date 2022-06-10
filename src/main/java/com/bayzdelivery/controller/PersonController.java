@@ -20,7 +20,17 @@ public class PersonController {
 
   @PostMapping(path = "/api/person")
   public ResponseEntity<Person> register(@RequestBody Person p) {
-    return ResponseEntity.ok(personService.save(p));
+	  
+	//checking User can not be both customer and delivery man at the same time and Only one must be chosen at registration
+	boolean isEligible = personService.checkValidRegistration(p);
+	if(isEligible) {
+		return ResponseEntity.ok(personService.save(p));
+	}
+	
+	else {
+		throw new RuntimeException("Hey you can not be both customer and delivery man at the same time "
+				+ "and Only one must be chosen at registration, please try again");
+	}
   }
 
   @GetMapping(path = "/api/person")
@@ -28,7 +38,7 @@ public class PersonController {
     return ResponseEntity.ok(personService.getAll());
   }
 
-  @GetMapping(path = "/api/person/{pers-id}")
+  @GetMapping(path = "/api/person/{person-id}")
   public ResponseEntity<Person> getPersonById(@PathVariable(name="person-id", required=true)Long personId) {
     Person person = personService.findById(personId);
     if (person != null) {

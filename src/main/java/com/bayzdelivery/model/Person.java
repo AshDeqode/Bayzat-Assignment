@@ -32,8 +32,30 @@ public class Person implements Serializable{
 
   @Column(name = "registration_number")
   String registrationNumber;
+ 
+  @Column(name = "is_customer")  
+  String isCustomer;
+  
+  @Column(name = "is_delivery_man")
+  String isDeliveryMan;
 
-  public Long getId() {
+  public String getIsCustomer() {
+	return isCustomer;
+}
+
+public void setIsCustomer(String isCustomer) {
+	this.isCustomer = isCustomer;
+}
+
+public String getIsDeliveryMan() {
+	return isDeliveryMan;
+}
+
+public void setIsDeliveryMan(String isDeliveryMan) {
+	this.isDeliveryMan = isDeliveryMan;
+}
+
+public Long getId() {
     return id;
   }
 
