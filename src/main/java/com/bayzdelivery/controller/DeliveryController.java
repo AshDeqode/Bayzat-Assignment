@@ -18,6 +18,10 @@ public class DeliveryController {
 
   @PostMapping(path ="/api/delivery")
   public ResponseEntity<Delivery> createNewDelivery(@RequestBody Delivery delivery) {
+	  //calculating and setting commission
+	Long calculatedCommission = (long) ((delivery.getPrice() * 0.05) + (delivery.getDistance() * 0.5));
+	delivery.setComission(calculatedCommission);
+	
     return ResponseEntity.ok(deliveryService.save(delivery));
   }
 

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -32,8 +33,30 @@ public class Person implements Serializable{
 
   @Column(name = "registration_number")
   String registrationNumber;
+//  
+//  @Column(name = "is_customer")
+//  String isCustomer;
+//  
+//  public String getIsCustomer() {
+//	return isCustomer;
+//}
+//
+//public void setIsCustomer(String isCustomer) {
+//	this.isCustomer = isCustomer;
+//}
+//
+//public String getIsDeliveryMan() {
+//	return isDeliveryMan;
+//}
+//
+//public void setIsDeliveryMan(String isDeliveryMan) {
+//	this.isDeliveryMan = isDeliveryMan;
+//}
 
-  public Long getId() {
+@Column(name = "is_delivery_man")
+  String isDeliveryMan;
+
+public Long getId() {
     return id;
   }
 
@@ -112,8 +135,4 @@ public class Person implements Serializable{
   public String toString() {
     return "Person [id=" + id + ", name=" + name + ", email=" + email + ", registrationNumber=" + registrationNumber + "]";
   }
-
-
-
-
 }

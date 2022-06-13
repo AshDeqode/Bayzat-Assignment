@@ -172,7 +172,4 @@ public class Delivery implements Serializable{
   public String toString() {
     return "Delivery [id=" + id + ", startTime=" + startTime + ", endTime=" + endTime + ", distance=" + distance + ", deliveryMan=" + deliveryMan + ", customer=" + customer + "]";
   }
-
-
-
 }
