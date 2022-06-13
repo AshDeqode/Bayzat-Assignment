@@ -1,4 +1,4 @@
-	package com.bayzdelivery.jobs;
+package com.bayzdelivery.jobs;
 
 import com.bayzdelivery.model.Delivery;
 import com.bayzdelivery.repositories.DelayedDeliveryRepository;

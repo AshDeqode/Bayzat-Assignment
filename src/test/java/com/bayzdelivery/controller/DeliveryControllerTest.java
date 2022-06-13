@@ -1,7 +1,13 @@
 package com.bayzdelivery.controller;
 
+import com.bayzdelivery.service.DeliveryServiceImpl;
+import com.bayzdelivery.model.Delivery;
+import com.bayzdelivery.model.Person;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+
+import java.time.Instant;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,23 +25,21 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bayzdelivery.service.PersonServiceImpl;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class PersonControllerTest {
+public class DeliveryControllerTest {
 
   MockMvc mockMvc;
 
   @Mock
-  private PersonController personController;
+  private DeliveryController deliveryController;
   
   @Mock
-  private PersonServiceImpl personService;
+  private DeliveryServiceImpl deliveryService;
 
   @Before
   public void setup() throws Exception {
-    mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+    mockMvc = MockMvcBuilders.standaloneSetup(deliveryController).build();
   }
   
   //method to get response status from MockHttpServletRequestBuilder
@@ -50,25 +54,35 @@ public class PersonControllerTest {
   }
   
   @Test
-  public void testPersonRegister() throws Exception { 
-	  when(personService.checkValidRegistration(ArgumentMatchers.any())).thenReturn(true);
-	  MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/person");
+  public void testCreateNewDelivery() throws Exception { 
+	  Delivery d = new Delivery();
+	  Person p1 = new Person();
+	  Person p2 = new Person();
 	  
-	  assertEquals(200, getFinalStatus(requestBuilder));
-  }
-  
-  @Test
-  public void testPersonRegisterNotEligible() throws Exception { 
-	  when(personService.checkValidRegistration(ArgumentMatchers.any())).thenReturn(false);
-	  MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/person");
+	  p1.setId(Long.valueOf(1));
+	  p1.setName("Ashish");
+	  p1.setEmail("asiwal@gmail.com");
+	  p1.setRegistrationNumber("123rr");
+	  p1.setIsCustomer("no");
+	  p1.setIsDeliveryMan("yes");
 	  
-	  assertEquals(400, getFinalStatus(requestBuilder));
-  }
-  
-  @Test
-  public void testGetAllPersons() throws Exception { 
-	  when(personService.checkValidRegistration(ArgumentMatchers.any())).thenReturn(false);
-	  MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/person");
+	  p2.setId(Long.valueOf(2));
+	  p2.setName("Kaushal");
+	  p2.setEmail("kausahl@gmail.com");
+	  p2.setRegistrationNumber("899bu");
+	  p2.setIsCustomer("yes");
+	  p2.setIsDeliveryMan("no");
+	  
+	  d.setStartTime(Instant.now());
+	  d.setEndTime(Instant.now());
+	  d.setDistance(Long.valueOf(3));
+	  d.setPrice(Long.valueOf(13));
+	  d.setComission(Long.valueOf(2));
+	  d.setDeliveryMan(p1);
+	  d.setCustomer(p2);
+
+	  when(deliveryService.save(ArgumentMatchers.any())).thenReturn(d);
+	  MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/delivery");
 	  
 	  assertEquals(200, getFinalStatus(requestBuilder));
   }

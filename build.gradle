@@ -20,6 +20,8 @@ apply plugin: "io.spring.dependency-management"
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.github.ksoichiro.console.reporter'
+apply plugin: 'jacoco'
+apply plugin: 'org.barfuin.gradle.jacocolog' version '1.0.1'
 
 group = 'com.bayzdelivery'
 version = '0.0.1-SNAPSHOT'
@@ -34,6 +36,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile 'org.springframework.boot:spring-boot-starter-security'
+	compile 'org.springframework.security:spring-security-test'
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 	compile('org.liquibase:liquibase-core')
 	runtime('org.springframework.boot:spring-boot-devtools')

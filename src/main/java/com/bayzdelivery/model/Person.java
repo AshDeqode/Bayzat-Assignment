@@ -134,8 +134,4 @@ public Long getId() {
   public String toString() {
     return "Person [id=" + id + ", name=" + name + ", email=" + email + ", registrationNumber=" + registrationNumber + "]";
   }
-
-
-
-
 }
