@@ -23,13 +23,13 @@ Simply initiate the `BayzDeliveryApplication.java` spring boot main class and yo
 
 ## List of End Points
 For Persons : 
-1. `/api/person` and `method = RequestMethod.POST`
-2. `/api/person` and `method = RequestMethod.GET`
-3. `/api/person/{person-id}` and `method = RequestMethod.GET`
+1. add new person `POST` `/api/person`
+2. get list of all persons `GET` `/api/person`
+3. get person by id `GET` `/api/person/{person-id}`
 
 For Delivery : 
-1. `/api/delivery` and `method = RequestMethod.POST`
-2. `/api/delivery/{delivery-id}` and `method = RequestMethod.GET`
+1. create new delivery `POST` `/api/delivery`
+2. get delivery by id `GET` `/api/delivery/{delivery-id}`
 
 For Top 3 delivery persons whose delivery has the maximum order price : 
-1. `/api/toppersons/{start-time}/{end-time}` and `method = RequestMethod.GET`
+1. get top 3 delivery persons `GET` `/api/toppersons/{start-time}/{end-time}`
